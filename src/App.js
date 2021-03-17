@@ -7,9 +7,7 @@ export default class App extends Component {
     test:''
   }
 componentDidMount(){
-  axios.post(`${this.state.baseUrl}test`,{
-   name:'This is test api'
-  })
+  axios.get(`${this.state.baseUrl}test`)
   .then((response) => {
     const test = response.data.test
     this.setState(() => {
