@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css'
-
+require('dotenv').config();
 export default class App extends Component {
   state = {
-     baseUrl:'http://127.0.0.1:8000/api',
-    //  baseUrl:'https://immense-beyond-81444.herokuapp.com/api',
+    //  baseUrl:'http://127.0.0.1:8000/api',
+    baseUrl:'https://immense-beyond-81444.herokuapp.com/api',
   
   }
 componentDidMount(){
-  axios.get('https://api.ipgeolocation.io/ipgeo?apiKey=6d3361906deb405dbb4c4cdcc1a61cb8')
+  axios.get(process.env.REACT_APP_USER_INFO_API)
   .then((res) => {
     axios.post(`${this.state.baseUrl}/user`,{
       ip:res.data.ip,
@@ -25,11 +25,9 @@ componentDidMount(){
      .then((response) => {
       const test = response.data.success;
      console.log(test);
-    //  this.horror();
-
-  
+        this.horror();
     }) 
-    console.log(res.data)
+   
   })
 }
 horror = () => {
